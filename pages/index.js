@@ -4,17 +4,18 @@ import PropTypes from "prop-types";
 import path from "path";
 import classNames from "classnames";
 
-import { listFiles } from "./list-files";
+import { listFiles } from "../services/list-files";
 
-import MarkdownEditor from "./MarkdownEditor";
-import PlaintextEditor from "./PlaintextEditor";
+import MarkdownEditor from "../components/MarkdownEditor";
+import PlaintextEditor from "../components/PlaintextEditor";
+import Previewer from "../components/Previewer";
 
-import IconPlaintextSVG from "./assets/icon-plaintext.svg";
-import IconMarkdownSVG from "./assets/icon-markdown.svg";
-import IconJavaScriptSVG from "./assets/icon-javascript.svg";
-import IconJSONSVG from "./assets/icon-json.svg";
+import IconPlaintextSVG from "../public/assets/icon-plaintext.svg";
+import IconMarkdownSVG from "../public/assets/icon-markdown.svg";
+import IconJavaScriptSVG from "../public/assets/icon-javascript.svg";
+import IconJSONSVG from "../public/assets/icon-json.svg";
 
-import css from "./style.css";
+import css from "../styles/Home.module.css";
 
 const TYPE_TO_ICON = {
   "text/plain": IconPlaintextSVG,
@@ -75,31 +76,11 @@ FilesTable.propTypes = {
   setActiveFile: PropTypes.func
 };
 
-function Previewer({ file }) {
-  const [value, setValue] = useState("");
-
-  useEffect(() => {
-    (async () => {
-      setValue(await file.text());
-    })();
-  }, [file]);
-
-  return (
-    <div className={css.preview}>
-      <div className={css.title}>{path.basename(file.name)}</div>
-      <div className={css.content}>{value}</div>
-    </div>
-  );
-}
-
-Previewer.propTypes = {
-  file: PropTypes.object
-};
 
 // Uncomment keys to register editors for media types
 const REGISTERED_EDITORS = {
-  // "text/plain": PlaintextEditor,
-  // "text/markdown": MarkdownEditor,
+  "text/plain": PlaintextEditor,
+  "text/markdown": MarkdownEditor,
 };
 
 function PlaintextFilesChallenge() {
