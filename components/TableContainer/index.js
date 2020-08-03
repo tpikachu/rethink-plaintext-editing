@@ -30,8 +30,6 @@ const TableContainer = ({ columns, fetchData }) => {
 		usePagination
 	);
 
-	console.log(loading);
-
 	const fetchAndSetData = () => {
 		setLoading(true);
 		fetchData(filter, (pageIndex - 1) * pageSize, pageSize).then((data) => {

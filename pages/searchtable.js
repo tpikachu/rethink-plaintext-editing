@@ -1,5 +1,5 @@
 import { useMemo, Fragment } from "react";
-import TableContainer from "./TableContainer";
+import TableContainer from "../components/TableContainer";
 
 const SearchTable = () => {
 	const columns = useMemo(

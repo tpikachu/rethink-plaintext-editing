@@ -49,7 +49,7 @@ app.get("/:shortUrl", async (req, res) => {
 // Search API
 app.get("/api/getData", (req, res) => {
 	const { filter, from, len } = req.query;
-
+	console.log(filter, from, len);
 	const filteredData = mockData.filter(
 		(data) =>
 			data.name.first.toLowerCase().includes(filter.toLowerCase()) ||
